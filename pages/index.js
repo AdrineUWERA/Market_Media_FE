@@ -4,6 +4,9 @@ import Image from "next/image";
 import LoadingAnimation from "../src/Components/UI/LoadingAni";
 import Navbar from "../src/Components/UI/Navbar";
 import SlideShow from "../src/Components/LandingPageComponents/slideShow";
+import ProductCategories from "../src/Components/LandingPageComponents/ProductCategory";
+import CallToAction from "../src/Components/LandingPageComponents/CallToAction";
+import Footer from "../src/Components/UI/Footer";
 
 export default function Home() {
   const [playAnimation, setPlayAnimation] = useState(false);
@@ -31,7 +34,11 @@ export default function Home() {
       {playAnimation ? (
         <>
           <Navbar />
+          <hr className="mt-1.5"></hr>
           <SlideShow />
+          <ProductCategories/>
+          <CallToAction/>
+          <Footer/>
         </>
       ) : (
         <LoadingAnimation />

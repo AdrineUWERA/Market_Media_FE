@@ -1,5 +1,5 @@
 import React from "react";
-import { GrNext, GrPrevious } from "react-icons/gr";
+// import { GrNext, GrPrevious } from "react-icons/gr";
 import Image from "next/image";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { useState } from "react";
@@ -36,7 +36,7 @@ const SlideShow = () => {
   };
 
   return (
-    <div className="m-10">
+    <div className="m-20 h-[70vh]">
       {images.map((item, index) => {
         return (
           <div
@@ -51,7 +51,7 @@ const SlideShow = () => {
             >
               <FiChevronLeft />
             </button>
-            <div className="flex justify-content-center items-center mx-20 w-full h-500">
+            <div className="flex justify-content-center items-center mx-20 w-full">
               <p className="w-1/2 text-3xl">{item.description}</p>
               <div className="w-1/2">
                 <Image
