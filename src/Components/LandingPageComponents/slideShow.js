@@ -36,7 +36,7 @@ const SlideShow = () => {
   };
 
   return (
-    <div className="m-20 h-[70vh]">
+    <div className="my-20 mx-32 h-[300px]">
       {images.map((item, index) => {
         return (
           <div

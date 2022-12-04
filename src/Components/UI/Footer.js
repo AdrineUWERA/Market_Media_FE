@@ -32,10 +32,10 @@ const Footer = () => {
           </p>
           <div class="relative flex items-stretch w-60">
             <input
-              type="search"
+              type="email"
               class="relative rounded-md rounded-r-none   flex-auto min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none"
-              placeholder="Search"
-              aria-label="Search"
+              placeholder="Enter email"
+              aria-label="Email"
               aria-describedby="button-addon2"
             />
             <button
