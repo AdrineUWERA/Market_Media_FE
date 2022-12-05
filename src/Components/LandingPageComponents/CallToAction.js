@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CallToAction = () => {
   return (
-    <div className="flex bg-[#D9D9D9] justify-between px-20 py-32 mt-20 items-center">
+    <div className="flex bg-[#D9D9D9] justify-between px-32 py-32 mt-20 items-center">
       <div className="w-1/4">
         <Image
           src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"

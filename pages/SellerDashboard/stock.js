@@ -22,13 +22,13 @@ export default function SellerDashboard() {
           <Sidebar />
           <div className='flex-1 mt-14 mb-14 ml-10 mr-14'>
             <div className="flex flex-row justify-between">
-              <h1 className="font-bold text-[28px] ">STOCK</h1>
+              <h1 className="font-bold text-[28px] pl-5">STOCK</h1>
               <Button>+ Add item</Button>
             </div>
 
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-7">
-              <table class="w-full text-sm text-center  text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+              <table class="w-full text-sm text-center  text-gray-500 border">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                   <tr>
                     <th scope="col" class="py-3 px-6">
                       No
@@ -47,9 +47,6 @@ export default function SellerDashboard() {
                     </th>
                     <th scope="col" class="py-3 px-6">
                       Date added
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                      Publish status
                     </th>
                   </tr>
                 </thead>
@@ -73,11 +70,8 @@ export default function SellerDashboard() {
                     <td class="py-4 px-6">
                       2022-10-10
                     </td>
-                    <td class="py-4 px-6 flex justify-center	">
-                      <IoMdCheckmarkCircle className="h-6 w-7 text-[#50C878]" alt=""/>
-                    </td>
                   </tr>
-                  <tr class="bg-gray-50 border-b">
+                  <tr class="bg-gray-100 border-b">
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                       1
                     </th>
@@ -95,9 +89,6 @@ export default function SellerDashboard() {
                     </td>
                     <td class="py-4 px-6">
                       2022-10-10
-                    </td>
-                    <td class="py-4 px-6 flex justify-center	">
-                      <IoMdCheckmarkCircle className="h-6 w-7 text-[#50C878]" alt=""/>
                     </td>
                   </tr>
                   <tr class="bg-white border-b">
@@ -119,11 +110,8 @@ export default function SellerDashboard() {
                     <td class="py-4 px-6">
                       2022-10-10
                     </td>
-                    <td class="py-4 px-6 flex justify-center	">
-                      <IoMdCheckmarkCircle className="h-6 w-7 text-[#50C878]" alt=""/>
-                    </td>
                   </tr>
-                  <tr class="bg-gray-50 border-b">
+                  <tr class="bg-gray-100 border-b">
                   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                       1
                     </th>
@@ -141,9 +129,6 @@ export default function SellerDashboard() {
                     </td>
                     <td class="py-4 px-6">
                       2022-10-10
-                    </td>
-                    <td class="py-4 px-6 flex justify-center	">
-                      <IoMdCheckmarkCircle className="h-6 w-7 text-[#50C878]" alt=""/>
                     </td>
                   </tr>
                   
