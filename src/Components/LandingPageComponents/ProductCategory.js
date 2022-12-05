@@ -12,45 +12,52 @@ const ProductCategories = () => {
   }
   const categories = data.categories;
   console.log(categories);
-  return <>{!loading && !error && (
-    <div className="w-full flex flex-col justify-content items-center pt-32">
-      <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 ">
-        {categories.map((category) => (
-          <Link
-            href={{
-              pathname: "/categories/[id]",
-              query: { id: category.id },
-            }}
-            key={category.id}
-          >
-            <div
-              key={category.id}
-              className="w-full md:w-[20rem] lg:w-[15rem]  p-4 rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl cursor-pointer"
-            >
-              <div className="p-2 mb-5">
-                <Image
-                  src={category.image}
-                  alt=""
-                  width={500}
-                  // layout="fill"
-                  height={300}
-                ></Image>
-                <h2 className="my-5 text-xl font-bold aliased max-w-[18rem] text-[#404040]">
-                  {category.name}
-                </h2>
+  return (
+    <>
+      {!loading && !error && (
+        <>
+          <h1 className="text-3xl font-bold text-left ml-[12.5%] pt-20">Shop by category</h1>
+          <div className="w-full flex flex-col justify-content items-center pt-16 ">
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 ">
+              {categories.map((category) => (
                 <Link
-                  href="/"
-                  className=" leading-relaxed text-justify underline text-[#555]"
+                  href={{
+                    pathname: "/categories/[id]",
+                    query: { id: category.id },
+                  }}
+                  key={category.id}
                 >
-                  Shop now
+                  <div
+                    key={category.id}
+                    className="w-full md:w-[20rem] lg:w-[15rem]  p-4 rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl cursor-pointer"
+                  >
+                    <div className="p-2 mb-5">
+                      <Image
+                        src={category.image}
+                        alt=""
+                        width={500}
+                        // layout="fill"
+                        height={300}
+                      ></Image>
+                      <h2 className="my-5 text-xl font-bold aliased max-w-[18rem] text-[#404040]">
+                        {category.name}
+                      </h2>
+                      <Link
+                        href="/"
+                        className=" leading-relaxed text-justify underline text-[#555]"
+                      >
+                        Shop now
+                      </Link>
+                    </div>
+                  </div>
                 </Link>
-              </div>
+              ))}
             </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-    )}</>
+          </div>
+        </>
+      )}
+    </>
+  );
 };
 
 export default ProductCategories;

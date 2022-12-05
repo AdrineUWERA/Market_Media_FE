@@ -34,7 +34,6 @@ export default function Home() {
       {playAnimation ? (
         <>
           <Navbar />
-          <hr className="mt-1.5"></hr>
           <SlideShow />
           <ProductCategories/>
           <CallToAction/>

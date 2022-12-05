@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
-import {BiSearch} from "react-icons/bi"
+import { BiSearch } from "react-icons/bi";
+import Link from "next/link";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,20 +55,24 @@ function Navbar() {
           </div>
           <div class="flex items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex flex-shrink-0 items-center">
-              <Image
-                class="block h-10 w-auto lg:hidden"
-                src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
-                width={5}
-                height={5}
-                alt="Your Company"
-              />
-              <Image
-                class="hidden h-10 w-auto lg:block"
-                src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
-                width={5}
-                height={5}
-                alt="Your Company"
-              />
+              <Link href="/">
+                <Image
+                  class="block h-10 w-auto lg:hidden"
+                  src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
+                  width={5}
+                  height={5}
+                  alt="Your Company"
+                />
+              </Link>
+              <Link href="/">
+                <Image
+                  class="hidden h-10 w-auto lg:block"
+                  src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
+                  width={5}
+                  height={5}
+                  alt="Your Company"
+                />
+              </Link>
             </div>
           </div>
 
@@ -88,7 +93,7 @@ function Navbar() {
                 type="button"
                 id="button-addon2"
               >
-                <BiSearch width={10} height={10}/>
+                <BiSearch width={10} height={10} />
               </button>
             </div>
           </div>
@@ -183,6 +188,7 @@ function Navbar() {
           </div>
         )}
       </div>
+      <hr className="mt-1.5"></hr>
     </nav>
   );
 }
