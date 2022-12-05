@@ -13,7 +13,7 @@ const ProductCategories = () => {
   const categories = data.categories;
   console.log(categories);
   return <>{!loading && !error && (
-    <div className="w-full flex flex-col justify-content items-center mx-5 pt-32">
+    <div className="w-full flex flex-col justify-content items-center pt-32">
       <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 ">
         {categories.map((category) => (
           <Link
