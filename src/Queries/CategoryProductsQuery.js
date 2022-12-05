@@ -11,7 +11,20 @@ const GET_CATEGORY_PRODUCTS = gql`
         image
       }
     }
+    categories {
+      id
+      name
+    }
   }
 `;
 
-export { GET_CATEGORY_PRODUCTS };
+const GET_CATEGORIES = gql`
+  query getCategories {
+    categories {
+      id
+      name
+    }
+  }
+`;
+
+export { GET_CATEGORY_PRODUCTS, GET_CATEGORIES };

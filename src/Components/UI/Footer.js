@@ -30,16 +30,16 @@ const Footer = () => {
           <p className="pb-5 text-wrap">
             Subscribe to our newsletter to keep you updated
           </p>
-          <div class="relative flex items-stretch w-60">
+          <div className="relative flex items-stretch w-60">
             <input
               type="email"
-              class="relative rounded-md rounded-r-none   flex-auto min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none"
+              className="relative rounded-md rounded-r-none   flex-auto min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none"
               placeholder="Enter email"
               aria-label="Email"
               aria-describedby="button-addon2"
             />
             <button
-              class="btn inline-block rounded-md  rounded-l-none px-4 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-[#eab93e] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
+              className="btn inline-block rounded-md  rounded-l-none px-4 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-[#eab93e] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
               type="button"
               id="button-addon2"
             >

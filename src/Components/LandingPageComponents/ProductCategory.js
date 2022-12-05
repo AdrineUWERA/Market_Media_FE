@@ -43,7 +43,10 @@ const ProductCategories = () => {
                         {category.name}
                       </h2>
                       <Link
-                        href="/"
+                        href={{
+                          pathname: "/categories/[id]",
+                          query: { id: category.id },
+                        }}
                         className=" leading-relaxed text-justify underline text-[#555]"
                       >
                         Shop now
