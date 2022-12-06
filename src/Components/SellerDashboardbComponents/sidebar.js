@@ -23,7 +23,6 @@ const Sidebar = () => {
         <aside class="w-64 mt-14 mb-14 ml-14" aria-label="Sidebar">
             <div class="overflow-y-auto px-5 bg-[#243C74] rounded pt-10 pb-64">
                 <ul class="space-y-2">
-                    {/* for (var menu of menuItems) {  */}
                     {menuItems.map(({ name: name, ...menu }) => {
                         const classes = getSidebarClasses(menu);
                         return (
@@ -34,27 +33,6 @@ const Sidebar = () => {
                             </li>
                         )
                     })}
-
-                    {/* <li>
-                        <a href="#" class="flex items-center p-2 text-[18px] font-bold text-white rounded-lg hover:bg-gray-100 hover:text-black">
-                            <span class="ml-3">Account</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-[18px] font-bold text-white rounded-lg hover:bg-gray-100 hover:text-black">
-                            <span class="ml-3">Stock</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-[18px] font-bold text-white rounded-lg hover:bg-gray-100 hover:text-black">
-                            <span class="ml-3">Orders</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center p-2 text-[18px] font-bold text-white rounded-lg hover:bg-gray-100 hover:text-black">
-                            <span class="ml-3">Reviews</span>
-                        </a>
-                    </li> */}
                 </ul>
             </div>
         </aside>
