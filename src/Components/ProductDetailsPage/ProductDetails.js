@@ -44,7 +44,7 @@ const ProductDetails = () => {
               </p>
               <p className="text-2xl pb-5">
                 <span className="font-bold">Quantity: </span>
-                {productDetails.price}
+                {productDetails.quantity}
               </p>
               <p className="text-2xl pb-5">
                 <span className="font-bold">Seller: </span>
