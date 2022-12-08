@@ -11,7 +11,9 @@ const menuItems = [
 
 const Sidebar = () => {
     const router = useRouter();
-    const activeMenu = useMemo(() => menuItems.find(menu => menu.link === router.pathname), [router.pathname]);
+    // const activeMenu = useMemo(() => menuItems.find(menu => menu.link === router.pathname), [router.pathname]);
+    const activeMenu = useMemo(() => menuItems.find(menu => router.pathname.includes(menu.link,0)), [router.pathname]);
+
     const getSidebarClasses = (menu) => {
         return classNames("flex items-center p-2 text-[18px] font-bold text-white rounded-lg",
             {
