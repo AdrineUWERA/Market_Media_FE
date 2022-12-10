@@ -5,6 +5,7 @@ const ADD_PRODUCT = gql`
     $quantity: String!, $price: String!, $manufacturer: String!, $dateAdded: String) {
     addProduct(image: $image, name: $name, description: $description, categoryId: $categoryId, unit: $unit,
                 quantity: $quantity, price: $price, manufacturer: $manufacturer, dateAdded: $dateAdded, businessId:"63836fd9a0481d0d5a667d90" ) {
+            id
             image
             name
             description
@@ -20,4 +21,12 @@ const ADD_PRODUCT = gql`
     }
   }
 `;
-export { ADD_PRODUCT };
+
+const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      id
+    }
+  }
+`;
+export { ADD_PRODUCT,DELETE_PRODUCT };
