@@ -70,8 +70,8 @@ export default function addProduct() {
     const url = await handleImageUpload();
     // setImage(url);
     // image=url.toString();
-    console.log(url);
     console.log(image);
+  //  console.log(image);
     // console.log(image);
     if (
       (image_url === "",

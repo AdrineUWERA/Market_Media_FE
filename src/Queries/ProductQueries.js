@@ -6,14 +6,14 @@ const GET_PRODUCT_DETAILS = gql`
       id
       image
       name
-      description 
-      category{
+      description
+      category {
         name
       }
       unit
       quantity
       price
-      business{
+      business {
         id
         name
       }
@@ -21,4 +21,24 @@ const GET_PRODUCT_DETAILS = gql`
   }
 `;
 
-export { GET_PRODUCT_DETAILS };
+const GET_ALL_PRODUCTS = gql`
+  query getAllProducts{
+    products {
+      id
+      image
+      name
+      description
+      category {
+        name
+      } 
+      price
+      business {
+        id
+        name
+      }
+      dateAdded
+    }
+  }
+`;
+
+export { GET_PRODUCT_DETAILS, GET_ALL_PRODUCTS };

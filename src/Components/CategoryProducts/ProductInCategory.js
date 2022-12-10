@@ -31,7 +31,7 @@ const ProductInCategory = () => {
               {categoryName}
             </h1>
             <div className="w-full flex flex-col justify-content items-center pt-12 pb-20">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 ">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ">
                 {products.map((product) => (
                   <Link
                     href={{

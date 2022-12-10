@@ -38,7 +38,7 @@ export default function SellerDashboard() {
                   <Button><a href="/SellerDashboard/stock/addProduct">+ Add item</a></Button>
                 </div>
 
-                <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-7 relative">
+                <div class="overflow-x-auto shadow-md sm:rounded-lg mt-7 relative">
                   <table class="w-full text-sm text-center  text-gray-500 border relative">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                       <tr>
@@ -168,7 +168,7 @@ export default function SellerDashboard() {
             <Footer />
           </>
         </React.Fragment>
-      )};
+      )}
     </>
   )
 }

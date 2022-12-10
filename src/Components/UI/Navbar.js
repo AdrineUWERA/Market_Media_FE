@@ -152,13 +152,22 @@ function Navbar() {
                     My Account
                   </a>
                   <a
-                    href="#"
+                    href="/SellerDashboard/stock"
                     className="block px-4 py-2 text-sm text-black-700"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-1"
                   >
                     Seller dashboard
+                  </a>
+                  <a
+                    href="/adminDashboard/all-products"
+                    className="block px-4 py-2 text-sm text-black-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-1"
+                  >
+                    Admin dashboard
                   </a>
                   <a
                     href="#"
