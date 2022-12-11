@@ -18,6 +18,7 @@ const ProductDetails = () => {
   }
   console.log(data);
   const productDetails = data.product;
+  
   return (
     <>
       {!loading && !error && (
@@ -52,6 +53,7 @@ const ProductDetails = () => {
               </p>
               <Link className="my-10" href="/">
                 <button className="btn px-5 py-3 bg-[#243C74] text-xl text-white rounded-md">See list of sellers</button>
+                
               </Link>
             </div>
           </div>
