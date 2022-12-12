@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import Link from "next/link";
+import { UserContext } from "../../Context/UserContext";
+import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
+  const { signup } = useContext(UserContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
+  const [errorShown, setErrorShown] = useState(false);
+
   const togglePassword = (e) => {
     e.preventDefault();
     setPasswordShown(!passwordShown);
@@ -13,21 +18,41 @@ const LoginForm = () => {
     e.preventDefault();
     setConfirmPasswordShown(!confirmPasswordShown);
   };
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch
+  } = useForm({
+    reValidateMode: "onChange",
+    mode: "onChange"
+  });
+
+  const onSubmit = async (data) => {
+    if (!data.password === data.confirmPassword) {
+      setErrorShown(true);
+    }
+    await signup(data);
+    
+  }
 
   return (
     <div className="flex justify-center py-20">
       <div className="w-[90%]">
         <div className="flex justify-center antialiased w-full">
           <form
-            //   onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onSubmit)}
             className="w-full px-20 bg-white pt-16 pb-16 mb-4 border-2 rounded-lg  shadow-md md:w-full lg:w-5/6 xl:w-3/5"
           >
             <h3 className="text-center text-black text-3xl md:text-3xl mb-7 font-semibold ">
               Sign up to create an account
             </h3>
+            {errorShown && <div  className="bg-[#fdc0c0] border-2 border-[red] w-full flex justify-center py-2 rounded-md mb-6">
+              <p>Passwords don't match</p>
+            </div>}
             <div className="mb-4 relative">
               <input
-                //   {...register("email", { required: "email is required" })}
+                {...register('name')}
                 type="text"
                 placeholder=" "
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
@@ -44,7 +69,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-4 relative">
               <input
-                //   {...register("email", { required: "email is required" })}
+                {...register('email')}
                 type="email"
                 placeholder=" "
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
@@ -61,7 +86,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-4 relative">
               <input
-                //   {...register("email", { required: "email is required" })}
+                {...register('phoneNumber')}
                 type="text"
                 placeholder=" "
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
@@ -78,7 +103,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-4 relative">
               <input
-                //   {...register("password", { required: "Password is required" })}
+                  {...register("password")}
                 type={passwordShown ? "text" : "password"}
                 placeholder=" "
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
@@ -102,7 +127,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-4 relative">
               <input
-                //   {...register("password", { required: "Password is required" })}
+                  {...register("confirmPassword")}
                 type={confirmPasswordShown ? "text" : "password"}
                 placeholder=" "
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"

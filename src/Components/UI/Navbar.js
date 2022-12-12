@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
+import { UserContext } from "../../Context/UserContext";
 
 function Navbar() {
+  const { user, logout } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -106,81 +113,83 @@ function Navbar() {
             </a>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {/* <a
-              href="#"
-              className="text-white rounded-md bg-[#243C74] hover:bg-[#244797] hover:text-white px-6 py-2 text-sm font-medium"
-            >
-              Login
-            </a> */}
-
-            <div className="relative ml-3">
-              <div className="flex">
-                <button
+            {!user ? (
+              <a
+                href="/login"
+                className="text-white rounded-md bg-[#243C74] hover:bg-[#244797] hover:text-white px-6 py-2 text-sm font-medium"
+              >
+                Login
+              </a>
+            ) : (
+              <div className="relative ml-3">
+                <div className="flex">
+                  {/* <button
                   type="button"
                   className="rounded-full focus:outline-none mr-12"
                 >
                   <BsFillCartFill className="h-9 w-10" alt="" />
-                </button>
-                <button
-                  onClick={() => setIsDropdown(!isDropdown)}
-                  type="button"
-                  className="flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  id="user-menu-button"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                >
-                  <span className="sr-only">Open user menu</span>
-                  <FaUserCircle className="h-9 w-10 rounded-full" alt="" />
-                </button>
-              </div>
-
-              {isDropdown && (
-                <div
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabindex="-1"
-                >
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-black-700"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-0"
+                </button> */}
+                  <button
+                    onClick={() => setIsDropdown(!isDropdown)}
+                    type="button"
+                    className="flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    id="user-menu-button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
                   >
-                    My Account
-                  </a>
-                  <a
-                    href="/SellerDashboard/stock"
-                    className="block px-4 py-2 text-sm text-black-700"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-1"
-                  >
-                    Seller dashboard
-                  </a>
-                  <a
-                    href="/adminDashboard/all-products"
-                    className="block px-4 py-2 text-sm text-black-700"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-1"
-                  >
-                    Admin dashboard
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-black-700"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-2"
-                  >
-                    Logout out
-                  </a>
+                    <span className="sr-only">Open user menu</span>
+                    <FaUserCircle className="h-9 w-10 rounded-full" alt="" />
+                  </button>
                 </div>
-              )}
-            </div>
+
+                {isDropdown && (
+                  <div
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
+                    tabindex="-1"
+                  >
+                    <a
+                      href="/my-account/my-profile"
+                      className="block px-4 py-2 text-sm text-black-700"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-0"
+                    >
+                      My Account
+                    </a>
+                    <a
+                      href="/SellerDashboard/stock"
+                      className="block px-4 py-2 text-sm text-black-700"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-1"
+                    >
+                      Seller dashboard
+                    </a>
+                    <a
+                      href="/adminDashboard/all-products"
+                      className="block px-4 py-2 text-sm text-black-700"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-1"
+                    >
+                      Admin dashboard
+                    </a>
+                    <button 
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-sm text-black-700"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-2"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

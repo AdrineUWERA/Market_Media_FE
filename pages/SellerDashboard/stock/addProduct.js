@@ -27,7 +27,7 @@ export default function addProduct() {
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState();
   const [price, setPrice] = useState();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   //   const [dateAdded, setDateAdded] = useState();
   let today = new Date();
   let date =
@@ -62,6 +62,7 @@ export default function addProduct() {
     );
 
     setImage(res.data.url);
+    console.log(res.data.url);
     return res.data.url;
   };
 

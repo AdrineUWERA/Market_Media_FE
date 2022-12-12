@@ -36,7 +36,7 @@ export default function AllProducts() {
               <Sidebar />
               <div className="flex-1 mt-14 mb-14 ml-10 mr-14 relative">
                 <div className="flex flex-row justify-between">
-                  <h1 className="font-bold text-[28px] pl-5">STOCK</h1>
+                  <h1 className="font-bold text-[28px] pl-5">ALL PRODUCTS</h1>
                   <p className="text-[15px] pt-4 pr-1">
                     Sorted by date published
                   </p>

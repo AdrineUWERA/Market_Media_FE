@@ -18,8 +18,8 @@ export default function SellerDashboard() {
     return <p>Something Went Wrong</p>;
   };
 
-  // const products = data.businessProducts;
-  // console.log(products);
+  const products = data.businessProducts;
+  console.log(products);
   return (
     <>
       {!loading && !error && (
