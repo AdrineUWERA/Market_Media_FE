@@ -6,7 +6,7 @@ import Sidebar from "./../../../src/Components/SellerDashboardbComponents/sideba
 import Button from "./../../../src//Components/UI/Button"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { GET_BUSINESS_PRODUCTS } from "./../../../src/Queries/businessProducts";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
 import Image from "next/image";
 import DeleteProductButton from "./../../../src/Components/DeleteProductButton"
@@ -40,8 +40,8 @@ export default function SellerDashboard() {
                   <Button><a href="/SellerDashboard/stock/addProduct">+ Add item</a></Button>
                 </div>
 
-                <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-7 relative">
-                  <table class="w-full text-sm text-center  text-gray-500 border relative ">
+                <div class="relative shadow-md sm:rounded-lg mt-7 relative">
+                  <table class="w-full text-sm text-center text-gray-500 border relative ">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                       <tr>
                         <th scope="col" class="py-3 px-6">
