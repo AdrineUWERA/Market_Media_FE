@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
 const GET_USER_DETAILS = gql`
-  query {
-    user(id: "638a1b79c8afb589adf654f3") {
-      id 
+  query ($id: ID!) {
+    user(id: $id) {
+      id
       name
       email
       phoneNumber
@@ -12,26 +12,24 @@ const GET_USER_DETAILS = gql`
   }
 `;
 
-
 const GET_USER_ORDERS = gql`
-  query {
-    userOrders(userId: "638a1b79c8afb589adf654f3"){
-    product{
-      id
-      name
-      price
-      image
+  query ($userId: ID!) {
+    userOrders(userId: $userId) {
+      product {
+        id
+        name
+        price
+        image
+      }
+      quantity
+      business {
+        id
+        name
+      }
+      shippingAddress
+      shippingMethod
     }
-    quantity
-    business{
-      id
-      name
-    }
-    shippingAddress
-    shippingMethod
-  }
   }
 `;
-
 
 export { GET_USER_DETAILS, GET_USER_ORDERS };

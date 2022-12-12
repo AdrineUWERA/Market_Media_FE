@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import Navbar from "../../src/Components/UI/Navbar";
 import Footer from "../../src/Components/UI/Footer";
@@ -7,12 +7,14 @@ import { GET_USER_DETAILS } from "../../src/Queries/UserQueries";
 import { useQuery } from "@apollo/client";
 import LoadingAnimation from "../../src/Components/UI/LoadingAni";
 import ChangePasswordModal from "../../src/Components/MyAccount/ChangePasswordModal";
+import {UserContext} from "../../src/Context/UserContext";
 
 export default function AllProducts() {
+  const { user } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const { loading, error, data } = useQuery(
     GET_USER_DETAILS
-    // ,{variables: { id: id }}
+    ,{variables: { id: user }}
   );
   if (loading) return <LoadingAnimation />;
   if (error) {
@@ -20,7 +22,7 @@ export default function AllProducts() {
     return <p>Something Went Wrong</p>;
   }
 
-  const user = data.user;
+  const userDetails = data.user;
   return (
     <>
       {!loading && !error && (
@@ -43,7 +45,7 @@ export default function AllProducts() {
                 <div class="overflow-x-auto ml-5 sm:rounded-lg mt-7 relative flex flex-col gap-y-5">
                   <div>
                     <span className="font-bold">Email:</span>
-                    <p className="pt-2">{user.email}</p>
+                    <p className="pt-2">{userDetails.email}</p>
                   </div>
                   <div>
                     <span className="font-bold">Password:</span>

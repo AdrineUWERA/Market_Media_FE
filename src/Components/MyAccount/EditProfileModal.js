@@ -12,14 +12,14 @@ const EditProfileModal = ({ isVisible, onClose }) => {
       onClose();
     }
   };
-  const { loading, error, data } = useQuery(GET_USER_DETAILS, {
-    // variables: { id: businessId },
-  });
-  if (loading) return <LoadingAnimation />;
-  if (error) {
-    console.log(error);
-    return <p>Something Went Wrong</p>;
-  }
+  // const { loading, error, data } = useQuery(GET_USER_DETAILS, {
+  //   // variables: { id: businessId },
+  // });
+  // if (loading) return <LoadingAnimation />;
+  // if (error) {
+  //   console.log(error);
+  //   return <p>Something Went Wrong</p>;
+  // }
   return (
     <div
       id="wrapper"
