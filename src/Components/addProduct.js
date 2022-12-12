@@ -17,7 +17,7 @@ const addingProduct = async ({image,name,description,categoryId,unit,quantity,pr
     const { data } = addProduct({
         variables: { image,name,description,categoryId,unit,quantity,price,manufacturer,dateAdded },
     });
-    // Router.push("/SellerDashboard/stock");
+    Router.push("/SellerDashboard/stock");
 }
 
 return (

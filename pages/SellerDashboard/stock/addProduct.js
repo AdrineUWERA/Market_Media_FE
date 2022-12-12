@@ -282,13 +282,7 @@ export default function addProduct() {
                       >
                         Submit
                       </button>
-                      <button
-                        type="reset"
-                        href="/SellerDashboard/stock"
-                        class="btn btn-primary px-14 py-2 bg-white border border-gray-500 text-gray-900 font-bold shadow-md rounded-md ml-7"
-                      >
-                        Cancel
-                      </button>
+                      <a href="/SellerDashboard/stock" class="btn btn-primary px-14 py-2 bg-white border border-gray-500 text-gray-900 font-bold shadow-md rounded-md ml-7">Cancel</a>
                     </div>
                   </form>
                 </div>
