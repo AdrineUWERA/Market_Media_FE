@@ -1,29 +1,49 @@
 import { gql } from "@apollo/client";
 
 const GET_SELLER_DETAILS = gql`
-
-query ($id: ID!) {
-    businesses(id: $id) {
+  query ($id: ID!) {
+    business(id: $id) {
+      id
+      image
+      name
+      description
+      webLink
+      socialMediaLink
+      email
+      phoneNumber
+      province
+      district
+      streetAddress
+      otherAddressDescription
+      legalDocument
+      applicationStatus
+      owner {
         id
-        image
         name
-        description
-        webLink
-        socialMedia
-        email
-        phoneNumber
-        province
-        district
-        streetAddress
-        otherAddress
-        legalDocument
-        applicationStatus
-        owner{
-            id
-            name
+      }
+      reviewsReceived {
+        id
+        user { 
+          name
         }
+        rating
+        comment
+      }
     }
-}
+  }
 `;
 
-export { GET_SELLER_DETAILS };
+const GET_SELLER_PRODUCTS = gql`
+    query($id: ID!){
+        businessProducts(businessId: $id) {
+            id
+            image
+            name
+            business{
+                name
+            }
+        }
+    }
+`
+
+export { GET_SELLER_DETAILS, GET_SELLER_PRODUCTS };

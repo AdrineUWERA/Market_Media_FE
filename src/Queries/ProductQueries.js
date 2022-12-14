@@ -22,7 +22,7 @@ const GET_PRODUCT_DETAILS = gql`
 `;
 
 const GET_ALL_PRODUCTS = gql`
-  query getAllProducts{
+  query getAllProducts {
     products {
       id
       image
@@ -30,7 +30,7 @@ const GET_ALL_PRODUCTS = gql`
       description
       category {
         name
-      } 
+      }
       price
       business {
         id
@@ -41,4 +41,21 @@ const GET_ALL_PRODUCTS = gql`
   }
 `;
 
-export { GET_PRODUCT_DETAILS, GET_ALL_PRODUCTS };
+const GET_PRODUCT_SELLERS = gql`
+  query ($name: String!){
+    productSellers(name: $name) {
+      id
+      name
+      price
+      business {
+        id
+        name
+        district
+        streetAddress
+        image
+      }
+    }
+  }
+`;
+
+export { GET_PRODUCT_DETAILS, GET_ALL_PRODUCTS, GET_PRODUCT_SELLERS };

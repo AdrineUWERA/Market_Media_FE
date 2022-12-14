@@ -7,10 +7,10 @@ import Link from "next/link";
 import { UserContext } from "../../Context/UserContext";
 
 function Navbar() {
-  const { user, logout } = useContext(UserContext);
+  const { user, userRole, logout } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
-
+  console.log("in navbar",userRole);
   const handleLogout = () => {
     logout();
   };
@@ -63,6 +63,7 @@ function Navbar() {
           <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
+               
                 <Image
                   className="block h-10 w-auto lg:hidden"
                   src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
@@ -70,8 +71,9 @@ function Navbar() {
                   height={5}
                   alt="Your Company"
                 />
+              
               </Link>
-              <Link href="/">
+              <Link href="/" className="flex flex-row items-center gap-4 font-semibold">
                 <Image
                   className="hidden h-10 w-auto lg:block"
                   src="https://res.cloudinary.com/dpuyeblqg/image/upload/v1670070152/Market%20media/Ellipse_4_v4qafi.svg"
@@ -79,6 +81,7 @@ function Navbar() {
                   height={5}
                   alt="Your Company"
                 />
+                  {/* <span className="font-['display'] text-[20px]"> Market Media</span> */}
               </Link>
             </div>
           </div>
@@ -96,7 +99,7 @@ function Navbar() {
                 aria-describedby="button-addon2"
               />
               <button
-                className="btn inline-block rounded-full  rounded-l-none px-6 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-[#243C74] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
+                className="btn inline-block rounded-full  rounded-l-none px-6 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
                 type="button"
                 id="button-addon2"
               >
@@ -159,6 +162,7 @@ function Navbar() {
                     >
                       My Account
                     </a>
+                    {userRole === "Seller" &&
                     <a
                       href="/SellerDashboard/stock"
                       className="block px-4 py-2 text-sm text-black-700"
@@ -167,7 +171,8 @@ function Navbar() {
                       id="user-menu-item-1"
                     >
                       Seller dashboard
-                    </a>
+                    </a>}
+                    { userRole === "Admin" && (
                     <a
                       href="/adminDashboard/all-products"
                       className="block px-4 py-2 text-sm text-black-700"
@@ -176,7 +181,7 @@ function Navbar() {
                       id="user-menu-item-1"
                     >
                       Admin dashboard
-                    </a>
+                    </a>)}
                     <button 
                       onClick={handleLogout}
                       className="block px-4 py-2 text-sm text-black-700"

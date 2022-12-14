@@ -50,14 +50,22 @@ const ProductDetails = () => {
                 <span className="font-bold">Seller: </span>
                 {productDetails.business.name}
               </p>
-              <Link className="my-10" href="/">
-                <button className="btn px-5 py-3 bg-[#243C74] text-xl text-white rounded-md">See list of sellers</button>
+              <Link
+                className="my-10"
+                href={{
+                  pathname: "/product-sellers/[name]",
+                  query: { name: productDetails.name },
+                }}
+              >
+                <button className="btn px-5 py-3 bg-[#243C74] text-xl text-white rounded-md">
+                  See list of sellers
+                </button>
               </Link>
             </div>
           </div>
           <div className="flex flex-col px-32 py-20">
             <h3 className="text-2xl font-bold pb-6">Description</h3>
-            <p className="text-[18px]">{productDetails.description}</p>
+            <p className="text-[18px] text-justify	">{productDetails.description}</p>
           </div>
         </div>
       )}

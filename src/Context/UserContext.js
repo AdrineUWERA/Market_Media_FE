@@ -11,6 +11,7 @@ export const UserContext = createContext(getInitialState);
 
 const UserProvider = ({ children, ...props }) => {
   const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState("Buyer");
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loginQuery] = useLazyQuery(LOGIN_QUERY, {
@@ -43,8 +44,9 @@ const UserProvider = ({ children, ...props }) => {
 
         setUser(JSON.parse(localStorage.getItem("user")));
 
-        console.log("user from login: ", user);
-        console.log("role: ", data.login.userRole);
+        // console.log("user from login: ");
+        // console.log("role: ", data.login.userRole);
+        setUserRole(data.login.userRole);
 
         if (data.login.userRole == "Admin") {
           Router.push("/adminDashboard/all-products");
@@ -94,7 +96,7 @@ const UserProvider = ({ children, ...props }) => {
   return (
     <UserContext.Provider
       {...props}
-      value={{ isAuthenticated, user, login, signup, logout }}
+      value={{ isAuthenticated, user, userRole, login, signup, logout }}
     >
       {children}
     </UserContext.Provider>
