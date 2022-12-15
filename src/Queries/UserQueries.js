@@ -8,6 +8,7 @@ const GET_USER_DETAILS = gql`
       email
       phoneNumber
       password
+      category
     }
   }
 `;

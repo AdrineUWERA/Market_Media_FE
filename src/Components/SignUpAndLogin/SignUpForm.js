@@ -118,8 +118,7 @@ const LoginForm = () => {
                 onClick={togglePassword}
                 className="absolute h-[40px] inset-y-0 z-0 right-4 top-2 flex items-center text-sm"
               >
-                {passwordShown ? <BiShowAlt /> : <BiHide />}
-                {/* {passwordShown ? "Hide password" : "Show Password"} */}
+                {passwordShown ? <BiShowAlt /> : <BiHide />} 
               </button>
               {/* {errors.password && (
               <p className="text-red-500 text-xs ">{errors.password.message}</p>

@@ -43,7 +43,7 @@ const LoginForm = () => {
             <div className="mb-4 relative">
               <input
                 //   {...register("email", { required: "email is required" })}
-                type={passwordShown ? "text" : "email"}
+                // type={passwordShown ? "text" : "email"}
                 placeholder=" "
                 {...register('email')}
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"

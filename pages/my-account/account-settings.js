@@ -49,7 +49,7 @@ export default function AllProducts() {
                   </div>
                   <div>
                     <span className="font-bold">Password:</span>
-                    <p className="pt-2">**********</p>
+                    <p className="pt-2">********</p>
                   </div>
                   <div className="mt-10">
                     <button
@@ -63,6 +63,8 @@ export default function AllProducts() {
               </div>
             </div>
             <ChangePasswordModal
+              loggedInUser={user}
+              currentHashedPassword={userDetails.password}
               isVisible={showModal}
               onClose={() => setShowModal(false)}
             />

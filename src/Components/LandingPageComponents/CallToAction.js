@@ -15,7 +15,7 @@ const CallToAction = () => {
         <p className="text-3xl px-8">Find any product or service from the most reputable sellers around you</p>
       </div>
       <div className="w-1/4 flex items-center justify-center">
-        <button className="btn btn-primary px-10 py-4 bg-white shadow-md rounded-md">Find seller</button>
+        <a href="/sellers"> <button className="btn btn-primary px-10 py-4 bg-white shadow-md rounded-md">Find seller</button></a>
       </div>
     </div>
   );

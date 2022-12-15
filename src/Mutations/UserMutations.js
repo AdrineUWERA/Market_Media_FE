@@ -7,5 +7,12 @@ const EDIT_USER = gql`
     }
   }
 `;
+const CHANGE_PASSWORD = gql`
+  mutation changePassword($id: ID!, $newPassword: String!) {
+    changePassword(id: $id, newPassword: $newPassword) {
+      id
+    }
+  }
+`;
 
-export { EDIT_USER };
+export { EDIT_USER, CHANGE_PASSWORD };

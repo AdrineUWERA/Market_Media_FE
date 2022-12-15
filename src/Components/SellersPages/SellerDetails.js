@@ -6,9 +6,11 @@ import LoadingAnimation from "../UI/LoadingAni";
 import { useQuery } from "@apollo/client";
 import { FaUserCircle } from "react-icons/fa";
 import AddReviewModal from "./AddReviewModal";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 const SellerDetails = () => {
+  const { user } = useContext(UserContext);
   const router = useRouter();
   const id = router.query.id;
   console.log("id", id);
@@ -122,6 +124,8 @@ const SellerDetails = () => {
             </div>
           </div>
           <AddReviewModal
+            user={user}
+            businessId={business.id}
             isVisible={showModal}
             onClose={() => setShowModal(false)}
           />

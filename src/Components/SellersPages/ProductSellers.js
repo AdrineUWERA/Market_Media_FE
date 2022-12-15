@@ -4,16 +4,19 @@ import { useRouter } from "next/router";
 import { GET_PRODUCT_SELLERS } from "../../Queries/ProductQueries";
 import LoadingAnimation from "../UI/LoadingAni";
 import { useQuery } from "@apollo/client";
-// import Sidebar from "./SideBar";
+import { UserContext } from "../../Context/UserContext";
 import { MdLocationOn } from "react-icons/md";
 import OrderModal from "./OrderModal";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-const ProductInCategory = () => {
+const ProductSellers = () => {
+  const { user } = useContext(UserContext);
   const router = useRouter();
   const name = router.query.name;
   console.log("id", name);
   const [showModal, setShowModal] = useState(false);
+  const [sellerChosen, setSellerChosen] = useState(false);
+  const [productChosen, setProductChosen] = useState(false);
   const { loading, error, data } = useQuery(GET_PRODUCT_SELLERS, {
     variables: { name },
   });
@@ -45,7 +48,7 @@ const ProductInCategory = () => {
                         href={{
                           pathname: "/sellers/[id]",
                           query: { id: matchingProduct.business.id },
-                        }} 
+                        }}
                         key={matchingProduct.business.id}
                       >
                         <Image
@@ -72,7 +75,11 @@ const ProductInCategory = () => {
                         </div>
                       </Link>
                       <button
-                        onClick={() => setShowModal(true)}
+                        onClick={() => {
+                          setShowModal(true);
+                          setSellerChosen(matchingProduct.business.id);
+                          setProductChosen(matchingProduct.id);
+                        }}
                         className="leading-relaxed text-justify bg-[#DBA61F] px-[75.5px] py-2 rounded-md text-[white]"
                       >
                         Order
@@ -83,6 +90,9 @@ const ProductInCategory = () => {
               </div>
             </div>
             <OrderModal
+              productId={productChosen}
+              user={user}
+              businessId={sellerChosen}
               isVisible={showModal}
               onClose={() => setShowModal(false)}
             />
@@ -93,4 +103,4 @@ const ProductInCategory = () => {
   );
 };
 
-export default ProductInCategory;
+export default ProductSellers;

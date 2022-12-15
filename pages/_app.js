@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Head from "next/head";
 import UserProvider from "../src/Context/UserContext";
-import EditProfileProvider from "../src/Context/EditeProfileContext";
+import ChangePasswordProvider from "../src/Context/EditPasswordContext";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql",
@@ -19,9 +19,9 @@ function MyApp({ Component, pageProps }) {
 
       <ApolloProvider client={client}>
         <UserProvider>
-          <EditProfileProvider>
-          <Component {...pageProps} />
-          </EditProfileProvider>
+          <ChangePasswordProvider>
+            <Component {...pageProps} />
+          </ChangePasswordProvider>
         </UserProvider>
       </ApolloProvider>
     </>

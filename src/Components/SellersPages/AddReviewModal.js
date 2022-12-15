@@ -1,10 +1,11 @@
 import { AiFillCloseCircle } from "react-icons/ai";
-// import { GET_USER_DETAILS } from "../../Queries/UserQueries";
-import { useQuery } from "@apollo/client";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { ADD_REVIEW } from "../../Mutations/AddReviewMutation";
+import {GET_SELLER_DETAILS} from "../../Queries/SellerQuery"
+import { useMutation, useQuery } from "@apollo/client";
+import { useContext, useState } from "react"; 
 
-const AddReviewModal = ({ isVisible, onClose }) => { 
+const AddReviewModal = ({ user, businessId, isVisible, onClose }) => {
+  console.log(user, businessId);
   if (!isVisible) {
     return null;
   }
@@ -13,21 +14,27 @@ const AddReviewModal = ({ isVisible, onClose }) => {
       onClose();
     }
   };
-  //   const { loading, error, data } = useQuery(GET_USER_DETAILS, {
-  //     variables: { id: user },
-  //   });
-  //   if (loading) return <LoadingAnimation />;
-  //   if (error) {
-  //     console.log(error);
-  //     return <p>Something Went Wrong</p>;
-  //   }
+ 
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
-  const { register, control, handleSubmit, watch } = useForm({
-    reValidateMode: "onChange",
-    mode: "onChange",
+  const [ addReview ] = useMutation(ADD_REVIEW, {
+    variables: {
+      userId: user,
+      businessId: businessId,
+      rating,
+      comment
+    },
+    refetchQueries: [{ query: GET_SELLER_DETAILS, variables: { id: businessId } }],
   });
 
-  const onSubmit = async (data) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const ratingInt= parseInt(rating);
+    addReview(user, businessId, ratingInt, comment);
+    onClose();
+  };
 
   return (
     <div
@@ -44,7 +51,7 @@ const AddReviewModal = ({ isVisible, onClose }) => {
           />
           <div>
             <form
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit}
               className="w-full px-10 bg-white pt-5 pb-5 mb-4 md:w-full"
             >
               <h3 className="text-center text-black text-3xl md:text-3xl mb-7 font-semibold ">
@@ -53,7 +60,9 @@ const AddReviewModal = ({ isVisible, onClose }) => {
               <div className="mb-4 relative">
                 <input
                   placeholder=" "
-                  {...register("rating")}
+                  // {...register("rating")}
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
                   required
                   type="number"
                   className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
@@ -65,7 +74,9 @@ const AddReviewModal = ({ isVisible, onClose }) => {
               <div className="mb-4 relative">
                 <textarea
                   placeholder=" "
-                  {...register("comment")}
+                  // {...register("comment")}
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
                   required
                   className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
                 ></textarea>

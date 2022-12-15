@@ -109,7 +109,7 @@ const ApplicationModalContent = ({ businessId }) => {
         <div className="flex flex-col gap-1 mt-5">
           <h2 className="font-bold">Legal document</h2>
           <div>
-            <a href={business.legalDocument} target="_blank">
+            <a href={business.legalDocument}  target="_blank" className="underline">
               View Document
             </a>
           </div>

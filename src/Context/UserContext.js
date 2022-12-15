@@ -11,7 +11,7 @@ export const UserContext = createContext(getInitialState);
 
 const UserProvider = ({ children, ...props }) => {
   const [user, setUser] = useState(null);
-  const [userRole, setUserRole] = useState("Buyer");
+  const [userRole, setUserRole] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loginQuery] = useLazyQuery(LOGIN_QUERY, {
@@ -27,6 +27,7 @@ const UserProvider = ({ children, ...props }) => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
+    setUserRole(JSON.parse(localStorage.getItem("userRole")));
   }, []);
 
   const login = async ({ email, password }) => {
@@ -41,12 +42,13 @@ const UserProvider = ({ children, ...props }) => {
         isAuthenticated = true;
 
         localStorage.setItem("user", JSON.stringify(data.login.userId)); //resolve a user
+        localStorage.setItem("userRole", JSON.stringify(data.login.userRole)); //resolve a user
 
         setUser(JSON.parse(localStorage.getItem("user")));
 
         // console.log("user from login: ");
         // console.log("role: ", data.login.userRole);
-        setUserRole(data.login.userRole);
+        setUserRole(JSON.parse(localStorage.getItem("userRole")));
 
         if (data.login.userRole == "Admin") {
           Router.push("/adminDashboard/all-products");
@@ -85,14 +87,15 @@ const UserProvider = ({ children, ...props }) => {
   };
 
   const logout = async () => {
-    await destroyCookie(undefined, "auth_token");
+    destroyCookie(undefined, "auth_token");
     localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
     setUser(null);
+    setUserRole(null);
     isAuthenticated = false;
-    Router.push("/");
-    console.log("logged out");
+    Router.push("/"); 
   };
-
+  
   return (
     <UserContext.Provider
       {...props}

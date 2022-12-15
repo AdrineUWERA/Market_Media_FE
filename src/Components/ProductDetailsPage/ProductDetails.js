@@ -36,11 +36,11 @@ const ProductDetails = () => {
               </p>
               <p className="text-2xl pb-5">
                 <span className="font-bold">Price: </span>
-                {productDetails.price}
+                {productDetails.price} RWF
               </p>
               <p className="text-2xl pb-5">
                 <span className="font-bold">Unit: </span>
-                {productDetails.price}
+                {productDetails.unit}
               </p>
               <p className="text-2xl pb-5">
                 <span className="font-bold">Quantity: </span>

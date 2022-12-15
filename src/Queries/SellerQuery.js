@@ -23,7 +23,7 @@ const GET_SELLER_DETAILS = gql`
       }
       reviewsReceived {
         id
-        user { 
+        user {
           name
         }
         rating
@@ -34,16 +34,26 @@ const GET_SELLER_DETAILS = gql`
 `;
 
 const GET_SELLER_PRODUCTS = gql`
-    query($id: ID!){
-        businessProducts(businessId: $id) {
-            id
-            image
-            name
-            business{
-                name
-            }
-        }
+  query ($id: ID!) {
+    businessProducts(businessId: $id) {
+      id
+      image
+      name
+      business {
+        name
+      }
     }
-`
+  }
+`;
 
-export { GET_SELLER_DETAILS, GET_SELLER_PRODUCTS };
+const GET_ALL_SELLERS = gql`
+  query {
+    businesses {
+      name
+      id
+      image
+    }
+  }
+`;
+
+export { GET_SELLER_DETAILS, GET_SELLER_PRODUCTS, GET_ALL_SELLERS };
