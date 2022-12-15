@@ -9,6 +9,7 @@ const ADD_ORDER = gql`
     $phoneNumber: String!
     $shippingAddress: String!
     $shippingMethod: String!
+    $orderDate: String!
   ) {
     addOrder(
       userId: $userId
@@ -18,6 +19,7 @@ const ADD_ORDER = gql`
       phoneNumber: $phoneNumber
       shippingAddress: $shippingAddress
       shippingMethod: $shippingMethod
+      orderDate: $orderDate
     ) {
       id
       user {

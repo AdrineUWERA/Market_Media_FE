@@ -1,8 +1,8 @@
 import { AiFillCloseCircle } from "react-icons/ai";
 import { ADD_REVIEW } from "../../Mutations/AddReviewMutation";
-import {GET_SELLER_DETAILS} from "../../Queries/SellerQuery"
+import { GET_SELLER_DETAILS } from "../../Queries/SellerQuery";
 import { useMutation, useQuery } from "@apollo/client";
-import { useContext, useState } from "react"; 
+import { useContext, useState } from "react";
 
 const AddReviewModal = ({ user, businessId, isVisible, onClose }) => {
   console.log(user, businessId);
@@ -14,25 +14,32 @@ const AddReviewModal = ({ user, businessId, isVisible, onClose }) => {
       onClose();
     }
   };
- 
+
+  let today = new Date();
+  let date =
+    today.getMonth() + " " + (today.getDate() + 1) + " " + today.getFullYear();
+  let dateAdded = date.toString();
+
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  const [ addReview ] = useMutation(ADD_REVIEW, {
+  const [addReview] = useMutation(ADD_REVIEW, {
     variables: {
       userId: user,
       businessId: businessId,
       rating,
-      comment
+      comment,
+      dateAdded
     },
-    refetchQueries: [{ query: GET_SELLER_DETAILS, variables: { id: businessId } }],
+    refetchQueries: [
+      { query: GET_SELLER_DETAILS, variables: { id: businessId } },
+    ],
   });
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const ratingInt= parseInt(rating);
-    addReview(user, businessId, ratingInt, comment);
+    const ratingInt = parseInt(rating);
+    addReview(user, businessId, ratingInt, comment, dateAdded);
     onClose();
   };
 

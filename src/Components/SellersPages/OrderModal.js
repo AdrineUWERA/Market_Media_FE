@@ -17,40 +17,48 @@ const OrderModal = ({ productId, user, businessId, isVisible, onClose }) => {
     }
   };
 
+  let today = new Date();
+  let date =
+    today.getMonth() + " " + (today.getDate() + 1) + " " + today.getFullYear();
+  let orderDate = date.toString();
+
   const [quantity, setQuantity] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [shippingMethod, setShippingMethod] = useState("");
-
+  const userId = user;
+  console.log("user id in order", userId);
   const [addOrder] = useMutation(ADD_ORDER, {
     variables: {
-      userId: user,
+      userId,
       productId,
       quantity,
       businessId: businessId,
       phoneNumber,
       shippingAddress,
       shippingMethod,
+      orderDate
     },
+    onCompleted: () => Router.push("/my-account/my-orders"),
     refetchQueries: [
-      { query: GET_USER_ORDERS, variables: { id: businessId } },
+      { query: GET_USER_ORDERS, variables: { id: userId } },
     ],
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("prdtId", productId);
-    addOrder(
-      user,
+    await addOrder(
+      userId,
       productId,
       quantity,
       businessId,
       phoneNumber,
       shippingAddress,
-      shippingMethod
+      shippingMethod,
+      orderDate
     );
     onClose();
-    Router.push("/my-account/my-orders");
   };
 
   return (
