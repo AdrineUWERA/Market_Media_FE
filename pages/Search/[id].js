@@ -32,8 +32,7 @@ const SearchItem = () => {
             <title>Market Media</title>
             <meta name="description" content="Welcome to market media" />
           </Head>
-          <Navbar />
-          <hr className="mt-1.5"></hr>
+          <Navbar /> 
           <div className="flex">
             {/* <Sidebar />  */}
             <div className="px-20">
