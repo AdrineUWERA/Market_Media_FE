@@ -2,6 +2,7 @@ import Router from "next/router";
 import React, { createContext, useEffect, useState } from "react";
 import { setCookie, destroyCookie, parseCookies } from "nookies";
 import { LOGIN_QUERY } from "../Queries/AuthenticationQueries";
+import { GET_OWNER_BUSINESS } from "../Queries/BusinessProducts"
 import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import { SIGNUP_MUTATION } from "../Mutations/AuthenticationMutation";
 
@@ -14,10 +15,17 @@ const UserProvider = ({ children, ...props }) => {
   const [userRole, setUserRole] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [businessId, setBusinessId] = useState(null);
   const [loginQuery] = useLazyQuery(LOGIN_QUERY, {
     variables: {
       email,
       password,
+    },
+  });
+
+  const {businessQuery} = useLazyQuery(GET_OWNER_BUSINESS, {
+    variables: {
+      user
     },
   });
 
@@ -54,6 +62,7 @@ const UserProvider = ({ children, ...props }) => {
           console.log("admin logged in");
           Router.push("/adminDashboard/all-products");
         } else if (data.login.userRole == "Seller") {
+          businessQuery(user);
           Router.push("/SellerDashboard/stock");
         } else {
           Router.push("/");
@@ -100,7 +109,7 @@ const UserProvider = ({ children, ...props }) => {
   return (
     <UserContext.Provider
       {...props}
-      value={{ isAuthenticated, user, userRole, login, signup, logout }}
+      value={{ isAuthenticated, businessId, user, userRole, login, signup, logout }}
     >
       {children}
     </UserContext.Provider>
