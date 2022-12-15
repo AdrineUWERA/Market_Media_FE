@@ -47,12 +47,13 @@ const UserProvider = ({ children, ...props }) => {
         setUser(JSON.parse(localStorage.getItem("user")));
 
         // console.log("user from login: ");
-        // console.log("role: ", data.login.userRole);
-        setUserRole(JSON.parse(localStorage.getItem("userRole")));
+        console.log("role in usercontext: ", data.login.userRole);
+        setUserRole(JSON.parse(localStorage.getItem("userRole"))); 
 
-        if (userRole == "Admin") {
+        if (data.login.userRole == "Admin") {
+          console.log("admin logged in");
           Router.push("/adminDashboard/all-products");
-        } else if (userRole == "Seller") {
+        } else if (data.login.userRole == "Seller") {
           Router.push("/SellerDashboard/stock");
         } else {
           Router.push("/");
