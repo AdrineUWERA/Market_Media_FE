@@ -6,18 +6,12 @@ import Navbar from "./../../../src/Components/UI/Navbar";
 import Footer from "./../../../src/Components/UI/Footer";
 import Sidebar from "./../../../src/Components/SellerDashboardbComponents/sidebar";
 import { GET_CATEGORIES } from "./../../../src/Queries/CategoriesQuery";
-import { ADD_PRODUCT } from "./../../../src/Mutations/product";
 import { ProductContext } from "./../../../src/Components/addProduct";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
 import Image from "next/image";
-import useAmutation from "./../../../src/Components/CustomHook/useMutation";
 
 export default function addProduct() {
-  //   let date;
-  // let dateAdded;
-  let url;
-  // let image;
   const { addingProduct } = useContext(ProductContext);
   const [previewImage, setPreviewImage] = useState("");
   const [image_url, setImageUrl] = useState("");
@@ -28,41 +22,11 @@ export default function addProduct() {
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState();
   const [price, setPrice] = useState();
-  // const [image, setImage] = useState('');
-  //   const [dateAdded, setDateAdded] = useState();
   let today = new Date();
   let date =
     today.getMonth() + " " + (today.getDate() + 1) + " " + today.getFullYear();
   let dateAdded = date.toString();
   const { loading, error, data } = useQuery(GET_CATEGORIES);
-  // const [addProduct] = useMutation(ADD_PRODUCT, {
-  //   variables: {
-  //     image,
-  //     name,
-  //     description,
-  //     categoryId,
-  //     unit,
-  //     quantity,
-  //     price,
-  //     manufacturer,
-  //     dateAdded,
-  //   },
-  // });
-
-  const handleImageUpload = async () => {
-    const data = new FormData();
-    data.append("file", image_url);
-    data.append("upload_preset", "marketMedia");
-    data.append("cloud_name", "doxc03jzw");
-
-    const res = await axios.post(
-      "https://api.cloudinary.com/v1_1/doxc03jzw/image/upload",
-      data
-    );
-
-    setImage(res.data.url);
-    // return res.data.url;
-  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -76,11 +40,7 @@ export default function addProduct() {
       data
     );
 
-    const image = res.data.url;    // setImage(url);
-    // image=url.toString();
-    // console.log(url);
-    // console.log(image);
-    // console.log(image);
+    const image = res.data.url;    
     if (
       (image_url === "",
         name === "" ||
@@ -93,19 +53,7 @@ export default function addProduct() {
     }
     console.log(image);
     await addingProduct({image,name,description,categoryId,unit,quantity,price,manufacturer,dateAdded})
-    // setDateAdded(date);
-    // addProduct(
-    //   image,
-    //   name,
-    //   description,
-    //   categoryId,
-    //   unit,
-    //   quantity,
-    //   price,
-    //   manufacturer,
-    //   dateAdded
-    // );
-
+    
     setName("");
     setDescription("");
     setManufacturer("");
@@ -145,7 +93,6 @@ export default function addProduct() {
                       id="image_url"
                       name="image_url"
                       accept="image/*"
-                      // onChange={(e) => setImage(e.target.value)}
                       onChange={async (e) => {
                         if (e.target.files) {
                           const file = e.target.files[0];
@@ -169,14 +116,7 @@ export default function addProduct() {
                           className="rounded-full"
                         ></Image>
                       </div>
-                      // <Image
-                      //   src={previewImage}
-                      //   className="mb-4 object-cover w-52 h-52 rounded-full"
-                      //   width={96}
-                      //   height={96}
-                      // ></Image>
                     )}
-                    {/* {errors.image_url && <p>There was an error uploading image</p>} */}
                     <div class="mb-6">
                       <label
                         htmlFor="image_url"

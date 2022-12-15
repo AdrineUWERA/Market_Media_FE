@@ -6,19 +6,20 @@ import Sidebar from "../../src/Components/SellerDashboardbComponents/sidebar";
 import Image from 'next/legacy/image'
 import { useQuery } from "@apollo/client";
 import Rate from './../../src/Components/UI/Rating'
-import { GET_REVIEWS } from "./../../src/Queries/Reviews";
+import { GET_REVIEWS,GET_REVIEWS_COUNT,GET_AVERAGE_RATING } from "./../../src/Queries/Reviews";
 import LoadingAnimation from "./../../src/Components/UI/LoadingAni";
+import AverageReview from "./../../src/Components/Reviews/AverageReview"
+import NumberOfReviews from "./../../src/Components/Reviews/NumberOfReviews"
 
 
 export default function reviews() {
 
   const { loading, error, data } = useQuery(GET_REVIEWS);
+  
   if (loading) return <LoadingAnimation />;
   if (error) {
-    console.log(error);
     return <p>Something Went Wrong</p>;
   };
-  console.log(data);
 
   return (
     <>
@@ -41,10 +42,10 @@ export default function reviews() {
               <h1 className="font-bold text-[20px]">Average Rating</h1>
               <div className="mt-4 mb-7 flex items-center">
                 <div className="flex items-center mr-24">
-                  <h1 className="font-bold text-[34px] ">3.7</h1>
+                  <AverageReview/>
                 </div>
                 <div className="">
-                  <p className="text-[#838383]">3 Reviews</p>
+                <NumberOfReviews/>
                 </div>
               </div>
               <div>

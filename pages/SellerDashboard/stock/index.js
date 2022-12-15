@@ -10,6 +10,8 @@ import { useQuery } from "@apollo/client";
 import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
 import Image from "next/image";
 import DeleteProductButton from "./../../../src/Components/DeleteProductButton"
+import Link from "next/link";
+
 
 export default function SellerDashboard() {
   const { loading, error, data } = useQuery(GET_BUSINESS_PRODUCTS);
@@ -106,7 +108,16 @@ export default function SellerDashboard() {
                                 <div className="group relative cursor-pointer">
                                   <BsThreeDotsVertical />
                                   <div className="hidden group-hover:inline group-hover:max-h-[400px]	group-hover:min-w-max	group-hover:top-full group-hover:z-[1000] absolute top-0	right-[15%]	box-border	w-full	overflow-hidden	max-h-0	rounded bg-white shadow-md">
-                                    <button type="button" className="group-hover:pt-2	group-hover:border-t-[1px] block bg-white w-full py-[0.375rem] py-[0.375rem] px-[0.5rem] text-[12px] text-left hover:bg-[#BBB]">Edit</button>
+                                    <Link
+                                      href={{
+                                        pathname: "/SellerDashboard/stock/editProduct/[id]",
+                                        query: { id: product.id },
+                                      }}
+                                      key={product.id}
+                                      className="group-hover:pt-2	group-hover:border-t-[1px] block bg-white w-full py-[0.375rem] py-[0.375rem] px-[0.5rem] text-[12px] text-left hover:bg-[#BBB]"
+                                    >
+                                      Edit
+                                    </Link>
                                     <DeleteProductButton productId={product.id} />
                                   </div>
                                 </div>
@@ -148,7 +159,16 @@ export default function SellerDashboard() {
                                 <div className="group relative cursor-pointer">
                                   <BsThreeDotsVertical />
                                   <div className="hidden group-hover:inline group-hover:max-h-[400px]	group-hover:min-w-max	group-hover:top-full group-hover:z-[1000] absolute top-0	right-[15%]	box-border	w-full	overflow-hidden	max-h-0	rounded bg-white shadow-md">
-                                    <button type="button" className="group-hover:pt-2	group-hover:border-t-[1px] block bg-white w-full py-[0.375rem] py-[0.375rem] px-[0.5rem] text-[12px] text-left hover:bg-[#BBB]">Edit</button>
+                                    <Link
+                                      href={{
+                                        pathname: "/SellerDashboard/stock/editProduct/[id]",
+                                        query: { id: product.id },
+                                      }}
+                                      key={product.id}
+                                      className="group-hover:pt-2	group-hover:border-t-[1px] block bg-white w-full py-[0.375rem] py-[0.375rem] px-[0.5rem] text-[12px] text-left hover:bg-[#BBB]"
+                                    >
+                                      Edit
+                                    </Link>
                                     <DeleteProductButton productId={product.id} />
                                   </div>
                                 </div>
@@ -166,7 +186,7 @@ export default function SellerDashboard() {
             <Footer />
           </>
         </React.Fragment>
-      )};
+      )}
     </>
   )
 }

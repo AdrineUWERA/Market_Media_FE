@@ -22,6 +22,22 @@ const ADD_PRODUCT = gql`
   }
 `;
 
+const EDIT_PRODUCT = gql`
+mutation($id:ID!, $image: String, $name: String!, $description: String!, $categoryId: ID!, $unit: String!,
+  $quantity: String!, $price: String!, $manufacturer: String!) {
+    updateProduct(id:$id, image: $image, name: $name, description:$description,
+    category: $categoryId, unit:$unit, quantity:$quantity,price:$price, manufacturer:$manufacturer) {
+     id
+     image
+     name
+     description
+     unit
+     quantity
+     price
+   }
+  }
+`;
+
 const DELETE_PRODUCT = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
@@ -29,4 +45,4 @@ const DELETE_PRODUCT = gql`
     }
   }
 `;
-export { ADD_PRODUCT,DELETE_PRODUCT };
+export { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT };

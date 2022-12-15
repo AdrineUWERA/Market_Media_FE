@@ -1,33 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from 'axios';
-import FormData from 'form-data';
+import React from 'react'
 import Head from "next/head";
-import Navbar from "./../../../src/Components/UI/Navbar";
-import Footer from "./../../../src/Components/UI/Footer";
-import Sidebar from "./../../../src/Components/SellerDashboardbComponents/sidebar";
-import { GET_CATEGORIES } from "./../../../src/Queries/CategoriesQuery";
-import { ADD_PRODUCT } from "./../../../src/Mutations/product";
-import { useQuery, useMutation, gql } from "@apollo/client";
-import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
-import Image from "next/image";
-import { useRouter } from 'next/router';
-import useAmutation from "./../../../src/Components/CustomHook/useMutation";
-import { GET_BUSINESS_INFO } from "./../../../src/Queries/BusinessInfo";
-import { BusinessContext } from "../../../src/Context/updateBusinessProfile";
-import EditBusinessForm from "../../../src/Components/SellerDashboardbComponents/EditBusinessForm";
+import Navbar from "./../../../../src/Components/UI/Navbar";
+import Footer from "./../../../../src/Components/UI/Footer";
+import Sidebar from "./../../../../src/Components/SellerDashboardbComponents/sidebar";
+import { useRouter } from "next/router";
+import { useQuery } from "@apollo/client";
+import {GET_PRODUCT} from "./../../../../src/Queries/Product"
+import EditProductForm from "./../../../../src/Components/SellerDashboardbComponents/EditProductForm"
+import LoadingAnimation from "./../../../../src/Components/UI/LoadingAni";
 
 
-export default function addProduct() {
-
+export default function id() {
     const router = useRouter();
-    const { data, loading, error } = useQuery(GET_BUSINESS_INFO);
-
+    const id = router.query.id;
+    const { loading, error, data } = useQuery(GET_PRODUCT, {
+        variables: { id },
+      });
     if (loading) return <LoadingAnimation />;
     if (error) {
         console.log(error);
         return <p>Something Went Wrong</p>;
     }
-
+    console.log(data.product);
     return (
         <>
             {!loading && !error && (
@@ -46,7 +40,7 @@ export default function addProduct() {
                                     <h1 className="font-bold text-[28px] ">EDIT BUSINESS</h1>
                                 </div>
                                 <div class="overflow-x-auto relative mt-7 flex justify-start">
-                                    <EditBusinessForm business={data.business} />
+                                    <EditProductForm product={data.product} />
                                 </div>
                             </div>
                         </div>

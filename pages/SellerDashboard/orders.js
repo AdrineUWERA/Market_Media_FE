@@ -5,10 +5,24 @@ import Footer from "./../../src/Components/UI/Footer";
 import Sidebar from "./../../src/Components/SellerDashboardbComponents/sidebar";
 import { BsFillCheckCircleFill } from "react-icons/bs"
 import { RiCloseCircleFill } from "react-icons/ri"
+import { GET_ORDERS } from "./../../src/Queries/Orders";
+import LoadingAnimation from "./../../src/Components/UI/LoadingAni";
+import { useQuery } from "@apollo/client";
+import OrderStatusComplete from "./../../src/Components/OrderStatusComplete"
+import OrderStatusIncomplete from "./../../src/Components/OrderStatusIncomplete"
+
 
 export default function Orders() {
+  const { loading, error, data } = useQuery(GET_ORDERS);
+  if (loading) return <LoadingAnimation />;
+  if (error) {
+    console.log(error);
+    return <p>Something Went Wrong</p>;
+  };
+  console.log(data);
   return (
     <>
+      {!loading && !error && (
         <React.Fragment>
           <Head>
             <title>Market Media</title>
@@ -61,80 +75,89 @@ export default function Orders() {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* {data.businessProducts.map((product, index) => { */}
-                      {/* return (index % 2 ? ( */}
-                      {/* <> */}
-                      <tr class="bg-white border-b">
-                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                          {/* {index + 1} */}
-                          1
-                        </th>
-                        <td class="py-4 px-6 flex justify-center">
-                        John Doe
-                        </td>
-                        <td class="py-4 px-6">
-                        xyz@gmail.com                        
-                        </td>
-                        <td class="py-4 px-6">
-                        0788888
-                        </td>
-                        <td class="py-4 px-6">
-                        Cream                        
-                        </td>
-                        <td class="py-4 px-6">
-                        1
-                        </td>
-                        <td class="py-4 px-6">
-                        KK 509 St
-                        </td>
-                        <td class="py-4 px-6">
-                        Vuba vuba
-                        </td>
-                        <td class="py-4 px-6">
-                        2022-10-10
-                        </td>
-                        <td class="py-4 px-6 flex justify-center">
-                        <BsFillCheckCircleFill className="h-8 w-8 text-[#50C878]"/>
-                        </td>
-                      </tr>
-                      {/* </>
-                        ) : ( */}
-                      {/* <> */}
-                      <tr class=" bg-gray-100 border-b relative">
-                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                          2
-                        </th>
-                        <td class="py-4 px-6 flex justify-center">
-                        John Doe
-                        </td>
-                        <td class="py-4 px-6">
-                        xyz@gmail.com                        
-                        </td>
-                        <td class="py-4 px-6">
-                        0788888
-                        </td>
-                        <td class="py-4 px-6">
-                        Cream                        
-                        </td>
-                        <td class="py-4 px-6">
-                        1
-                        </td>
-                        <td class="py-4 px-6">
-                        KK 509 St
-                        </td>
-                        <td class="py-4 px-6">
-                        Vuba vuba
-                        </td>
-                        <td class="py-4 px-6">
-                        2022-10-10
-                        </td>
-                        <td class="py-4 px-6 flex justify-center	">
-                        <RiCloseCircleFill className="h-9 w-9 text-[#ED2939]"/>
-                        </td>
-                      </tr>
-                      {/* </> */}
-                      {/* )) */}
-                      {/* })} */}
+                      {data.businessOrders.map((order, index) => {
+                        return (index % 2 ? (
+                          <>
+                            <tr class="bg-gray-100 border-b">
+                              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                                {index + 1}
+                              </th>
+                              <td class="py-4 px-6 flex justify-center">
+                                {order.user.name}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.user.email}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.user.phoneNumber}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.product.name}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.quantity}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.shippingAddress}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.shippingMethod}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.orderDate}
+                              </td>
+                              <td class="py-4 px-6 flex justify-center">
+                              {order.status === "complete" ?
+                                  // <BsFillCheckCircleFill className="h-8 w-8 text-[#50C878]" />
+                                  <OrderStatusComplete orderId={order.id} />
+                                  :
+                                  <OrderStatusIncomplete orderId={order.id} />
+                                }
+                              </td>
+                            </tr>
+                          </>
+                        ) : (
+                          <>
+                            <tr class=" bg-white border-b relative">
+                              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                                {index + 1}
+                              </th>
+                              <td class="py-4 px-6 flex justify-center">
+                                {order.user.name}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.user.email}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.user.phoneNumber}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.product.name}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.quantity}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.shippingAddress}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.shippingMethod}
+                              </td>
+                              <td class="py-4 px-6">
+                                {order.orderDate}
+                              </td>
+                              <td class="py-4 px-6 flex justify-center	">
+                                {order.status === "complete" ?
+                                  // <BsFillCheckCircleFill className="h-8 w-8 text-[#50C878]" />
+                                  <OrderStatusComplete orderId={order.id} />
+                                  :
+                                  <OrderStatusIncomplete orderId={order.id} />
+                                }
+                              </td>
+                            </tr>
+                          </>
+                        ))
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -144,7 +167,7 @@ export default function Orders() {
             <Footer />
           </>
         </React.Fragment>
-      {/* )}; */}
+      )}
     </>
   )
 }
