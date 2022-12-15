@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import Navbar from "../../src/Components/UI/Navbar";
 import Footer from "../../src/Components/UI/Footer";
@@ -7,15 +7,15 @@ import { GET_USER_ORDERS } from "../../src/Queries/UserQueries";
 import { useQuery } from "@apollo/client";
 import LoadingAnimation from "../../src/Components/UI/LoadingAni";
 import Image from "next/image";
-import {UserContext} from "../../src/Context/UserContext";
+import { UserContext } from "../../src/Context/UserContext";
+import Link from "next/link";
 
 export default function AllProducts() {
   const { user } = useContext(UserContext);
   console.log(user);
-  const { loading, error, data } = useQuery(
-    GET_USER_ORDERS,
-    {variables: { userId: user }}
-  );
+  const { loading, error, data } = useQuery(GET_USER_ORDERS, {
+    variables: { userId: user },
+  });
   if (loading) return <LoadingAnimation />;
   if (error) {
     console.log(error);
@@ -52,8 +52,16 @@ export default function AllProducts() {
                     <div className="flex flex-col justify-center ml-10">
                       <div>
                         <span className="font-bold mr-3">Product name:</span>
-                        <span className="pt-2 text-[#DBA61F] font-bold">
-                          {order.product.name}
+                        <span className="pt-2 text-[#DBA61F] font-bold underline">
+                          <Link
+                            href={{
+                              pathname: "/products/[id]",
+                              query: { id: order.product.id },
+                            }}
+                            key={order.product.id}
+                          >
+                            {order.product.name}
+                          </Link>
                         </span>
                       </div>
                       <div>

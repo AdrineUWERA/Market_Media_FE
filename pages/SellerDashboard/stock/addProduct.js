@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import FormData from "form-data";
+import React, { useContext, useState } from "react";
+import axios from 'axios';
+import FormData from 'form-data';
 import Head from "next/head";
 import Navbar from "./../../../src/Components/UI/Navbar";
 import Footer from "./../../../src/Components/UI/Footer";
 import Sidebar from "./../../../src/Components/SellerDashboardbComponents/sidebar";
-import Button from "./../../../src//Components/UI/Button";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { GET_CATEGORIES } from "./../../../src/Queries/CategoriesQuery";
-import { ADD_PRODUCT } from "./../../../src/Mutations/product";
+import { ProductContext } from "./../../../src/Components/addProduct";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
 import Image from "next/image";
 
 export default function addProduct() {
-  //   let date;
-  // let dateAdded;
-  let url;
-  // let image;
+  const { addingProduct } = useContext(ProductContext);
   const [previewImage, setPreviewImage] = useState("");
   const [image_url, setImageUrl] = useState("");
   const [name, setName] = useState("");
@@ -27,30 +22,14 @@ export default function addProduct() {
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState();
   const [price, setPrice] = useState();
-  const [image, setImage] = useState("");
-  //   const [dateAdded, setDateAdded] = useState();
   let today = new Date();
   let date =
     today.getMonth() + " " + (today.getDate() + 1) + " " + today.getFullYear();
   let dateAdded = date.toString();
-  console.log(date);
-  console.log(dateAdded);
   const { loading, error, data } = useQuery(GET_CATEGORIES);
-  const [addProduct] = useMutation(ADD_PRODUCT, {
-    variables: {
-      image,
-      name,
-      description,
-      categoryId,
-      unit,
-      quantity,
-      price,
-      manufacturer,
-      dateAdded,
-    },
-  });
 
-  const handleImageUpload = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     const data = new FormData();
     data.append("file", image_url);
     data.append("upload_preset", "marketMedia");
@@ -61,22 +40,10 @@ export default function addProduct() {
       data
     );
 
-    setImage(res.data.url);
-    console.log(res.data.url);
-    return res.data.url;
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const url = await handleImageUpload();
-    // setImage(url);
-    // image=url.toString();
-    console.log(image);
-  //  console.log(image);
-    // console.log(image);
+    const image = res.data.url;    
     if (
       (image_url === "",
-      name === "" ||
+        name === "" ||
         description === "" ||
         categoryId === "" ||
         unit === "" ||
@@ -84,20 +51,9 @@ export default function addProduct() {
     ) {
       return alert("Please fill in all fields");
     }
-
-    // setDateAdded(date);
-    addProduct(
-      image,
-      name,
-      description,
-      categoryId,
-      unit,
-      quantity,
-      price,
-      manufacturer,
-      dateAdded
-    );
-
+    console.log(image);
+    await addingProduct({image,name,description,categoryId,unit,quantity,price,manufacturer,dateAdded})
+    
     setName("");
     setDescription("");
     setManufacturer("");
@@ -137,29 +93,30 @@ export default function addProduct() {
                       id="image_url"
                       name="image_url"
                       accept="image/*"
-                      // onChange={(e) => setImage(e.target.value)}
-                      onChange={(e) => {
+                      onChange={async (e) => {
                         if (e.target.files) {
                           const file = e.target.files[0];
                           const reader = new FileReader();
-                          reader.onloadend = () => {
+                          reader.onloadend = async () => {
                             setPreviewImage(reader.result);
                             setImageUrl(reader.result);
                           };
-                          reader.readAsDataURL(file); 
+                          reader.readAsDataURL(file);
                         }
                       }}
                       style={{ display: "none" }}
                     />
                     {previewImage && (
-                      <Image
-                        src={previewImage}
-                        className="mb-4 object-cover w-52 h-52 rounded-full"
-                        width={96}
-                        height={96}
-                      ></Image>
+                      <div className="w-52 h-52 relative mb-4">
+                        <Image
+                          src={previewImage}
+                          alt="Picture of the product"
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-full"
+                        ></Image>
+                      </div>
                     )}
-                    {/* {errors.image_url && <p>There was an error uploading image</p>} */}
                     <div class="mb-6">
                       <label
                         htmlFor="image_url"
@@ -265,13 +222,7 @@ export default function addProduct() {
                       >
                         Submit
                       </button>
-                      <button
-                        type="reset"
-                        href="/SellerDashboard/stock"
-                        class="btn btn-primary px-14 py-2 bg-white border border-gray-500 text-gray-900 font-bold shadow-md rounded-md ml-7"
-                      >
-                        Cancel
-                      </button>
+                      <a href="/SellerDashboard/stock" class="btn btn-primary px-14 py-2 bg-white border border-gray-500 text-gray-900 font-bold shadow-md rounded-md ml-7">Cancel</a>
                     </div>
                   </form>
                 </div>

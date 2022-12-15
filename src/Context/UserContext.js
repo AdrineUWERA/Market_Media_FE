@@ -50,9 +50,9 @@ const UserProvider = ({ children, ...props }) => {
         // console.log("role: ", data.login.userRole);
         setUserRole(JSON.parse(localStorage.getItem("userRole")));
 
-        if (data.login.userRole == "Admin") {
+        if (userRole == "Admin") {
           Router.push("/adminDashboard/all-products");
-        } else if (data.login.userRole == "Seller") {
+        } else if (userRole == "Seller") {
           Router.push("/SellerDashboard/stock");
         } else {
           Router.push("/");

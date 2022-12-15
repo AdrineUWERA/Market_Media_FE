@@ -14,6 +14,7 @@ const LoginForm = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorShown, setErrorShown] = useState(false);
+
   const togglePassword = (e) => {
     e.preventDefault();
     setPasswordShown(!passwordShown);
@@ -21,6 +22,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     const isAuth = await login(data);
+    console.log("isauth",isAuth);
     if (!isAuth) {
       setErrorShown(true);
     }
@@ -46,6 +48,7 @@ const LoginForm = () => {
                 // type={passwordShown ? "text" : "email"}
                 placeholder=" "
                 {...register('email')}
+                onChange={(e) => setErrorShown(false)}
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
               />
               <label
@@ -65,6 +68,7 @@ const LoginForm = () => {
                 type={passwordShown ? "text" : "password"}
                 placeholder=" "
                 {...register('password')}
+                onChange={(e) => setErrorShown(false)}
                 className="block rounded-t-lg px-2.5 pb-3.5 pt-5 w-full text-md text-black border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-green peer"
               />
               <label

@@ -11,6 +11,7 @@ function Navbar() {
 
   console.log("FETCHING USER IN THE NAV", userRole); 
   const [isDropdown, setIsDropdown] = useState(false);
+  const [search, setSearch] = useState('');
 
   const handleLogout = async () => {
     await logout();
@@ -41,22 +42,28 @@ function Navbar() {
               </div>
 
               <div className="flex sm:ml-6 sm:block w-6/12">
-                <div className="relative flex items-stretch w-full">
-                  <input
-                    type="search"
-                    className="relative rounded-full rounded-r-none   flex-auto min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="button-addon2"
-                  />
-                  <button
-                    className="btn inline-block rounded-full  rounded-l-none px-6 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
-                    type="button"
-                    id="button-addon2"
-                  >
-                    <BiSearch width={10} height={10} />
-                  </button>
-                </div>
+              <div class="relative flex items-stretch w-full">
+              {/* <select className=" rounded-full rounded-r-none min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none">
+                      <option value="">Category</option>
+                    </select> */}
+              <input
+                type="search"
+                id="search"
+                class="relative rounded-full rounded-r-none   flex-auto min-w-0 block w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#243C74] focus:outline-none"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="button-addon2"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button
+                class="btn inline-block rounded-full  rounded-l-none px-6 bg-[#DBA61F] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-[#243C74] hover:shadow-lg focus:bg-[#243C74]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out items-center"
+                id="button-addon2"
+                htmlFor="search"
+              >
+                <a href={`/Search/${search}`}><BiSearch width={10} height={10} /></a>
+              </button>
+            </div>
               </div>
               <div className="text-center">
                 <a
