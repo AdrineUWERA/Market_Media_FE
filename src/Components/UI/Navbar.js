@@ -117,6 +117,17 @@ function Navbar() {
                         >
                           My Account
                         </a>
+                        {userRole === "Buyer" && (
+                          <a
+                            href="/SellerApplication"
+                            className="block px-4 py-2 text-sm text-black-700"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="user-menu-item-1"
+                          >
+                            Seller Application
+                          </a>
+                        )}
                         {userRole === "Seller" && (
                           <a
                             href="/SellerDashboard/stock"
