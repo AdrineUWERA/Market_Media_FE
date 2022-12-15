@@ -32,7 +32,6 @@ export default function id() {
                     </Head>
                     <>
                         <Navbar />
-                        <hr className="mt-1.5"></hr>
                         <div className="flex flex-row justify-start">
                             <Sidebar />
                             <div className="flex-1 mt-14 mb-14 mr-32">

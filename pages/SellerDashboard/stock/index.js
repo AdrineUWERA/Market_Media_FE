@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import Navbar from "./../../../src/Components/UI/Navbar";
 import Footer from "./../../../src/Components/UI/Footer";
 import Sidebar from "./../../../src/Components/SellerDashboardbComponents/sidebar";
-import Button from "./../../../src//Components/UI/Button"
-import { BsThreeDotsVertical } from "react-icons/bs"
+import Button from "./../../../src//Components/UI/Button";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { GET_BUSINESS_PRODUCTS } from "./../../../src/Queries/businessProducts";
 import { useQuery } from "@apollo/client";
 import LoadingAnimation from "./../../../src/Components/UI/LoadingAni";
 import Image from "next/image";
-import DeleteProductButton from "./../../../src/Components/DeleteProductButton"
+import DeleteProductButton from "./../../../src/Components/DeleteProductButton";
 import Link from "next/link";
-
+import { UserContext } from "../../../src/Context/UserContext";
 
 export default function SellerDashboard() {
-  
+  const {businessId} = useContext(UserContext);
+  console.log(businessId);
   const { loading, error, data } = useQuery(GET_BUSINESS_PRODUCTS);
   if (loading) return <LoadingAnimation />;
   if (error) {
     console.log(error);
     return <p>Something Went Wrong</p>;
-  };
+  }
   // const navigate = useNavigate();
-
 
   const products = data.businessProducts;
   console.log(products);
@@ -36,12 +36,14 @@ export default function SellerDashboard() {
           </Head>
           <>
             <Navbar />
-            <div className='flex flex-row justify-start relative z-[1]'>
+            <div className="flex flex-row justify-start relative z-[1]">
               <Sidebar />
-              <div className='flex-1 mt-14 mb-14 ml-10 mr-14 relative'>
+              <div className="flex-1 mt-14 mb-14 ml-10 mr-14 relative">
                 <div className="flex flex-row justify-between">
                   <h1 className="font-bold text-[28px] pl-5">STOCK</h1>
-                  <Button><a href="/SellerDashboard/stock/addProduct">+ Add item</a></Button>
+                  <Button>
+                    <a href="/SellerDashboard/stock/addProduct">+ Add item</a>
+                  </Button>
                 </div>
 
                 <div class="relative shadow-md sm:rounded-lg mt-7 relative">
@@ -69,16 +71,18 @@ export default function SellerDashboard() {
                         <th scope="col" class="py-3 px-6">
                           Date added
                         </th>
-                        <th scope="col" class="py-3 pr-2">
-                        </th>
+                        <th scope="col" class="py-3 pr-2"></th>
                       </tr>
                     </thead>
                     <tbody>
                       {data.businessProducts.map((product, index) => {
-                        return (index % 2 ? (
+                        return index % 2 ? (
                           <>
                             <tr class=" bg-gray-100 border-b relative">
-                              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                              <th
+                                scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+                              >
                                 {index + 1}
                               </th>
                               <td class="py-4 px-6 flex justify-center">
@@ -91,28 +95,19 @@ export default function SellerDashboard() {
                                   ></Image>
                                 </div>
                               </td>
-                              <td class="py-4 px-6">
-                                {product.name}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.unit}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.quantity}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.price}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.dateAdded}
-                              </td>
+                              <td class="py-4 px-6">{product.name}</td>
+                              <td class="py-4 px-6">{product.unit}</td>
+                              <td class="py-4 px-6">{product.quantity}</td>
+                              <td class="py-4 px-6">{product.price}</td>
+                              <td class="py-4 px-6">{product.dateAdded}</td>
                               <td class="py-4 pr-2">
                                 <div className="group relative cursor-pointer">
                                   <BsThreeDotsVertical />
                                   <div className="hidden group-hover:inline group-hover:max-h-[400px]	group-hover:min-w-max	group-hover:top-full group-hover:z-[1000] absolute top-0	right-[15%]	box-border	w-full	overflow-hidden	max-h-0	rounded bg-white shadow-md">
                                     <Link
                                       href={{
-                                        pathname: "/SellerDashboard/stock/editProduct/[id]",
+                                        pathname:
+                                          "/SellerDashboard/stock/editProduct/[id]",
                                         query: { id: product.id },
                                       }}
                                       key={product.id}
@@ -120,7 +115,9 @@ export default function SellerDashboard() {
                                     >
                                       Edit
                                     </Link>
-                                    <DeleteProductButton productId={product.id} />
+                                    <DeleteProductButton
+                                      productId={product.id}
+                                    />
                                   </div>
                                 </div>
                               </td>
@@ -129,7 +126,10 @@ export default function SellerDashboard() {
                         ) : (
                           <>
                             <tr class="bg-white border-b">
-                              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                              <th
+                                scope="row"
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+                              >
                                 {index + 1}
                               </th>
                               <td class="py-4 px-6 flex justify-center">
@@ -142,28 +142,19 @@ export default function SellerDashboard() {
                                   ></Image>
                                 </div>
                               </td>
-                              <td class="py-4 px-6">
-                                {product.name}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.unit}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.quantity}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.price}
-                              </td>
-                              <td class="py-4 px-6">
-                                {product.dateAdded}
-                              </td>
+                              <td class="py-4 px-6">{product.name}</td>
+                              <td class="py-4 px-6">{product.unit}</td>
+                              <td class="py-4 px-6">{product.quantity}</td>
+                              <td class="py-4 px-6">{product.price}</td>
+                              <td class="py-4 px-6">{product.dateAdded}</td>
                               <td class="py-4 pr-2">
                                 <div className="group relative cursor-pointer">
                                   <BsThreeDotsVertical />
                                   <div className="hidden group-hover:inline group-hover:max-h-[400px]	group-hover:min-w-max	group-hover:top-full group-hover:z-[1000] absolute top-0	right-[15%]	box-border	w-full	overflow-hidden	max-h-0	rounded bg-white shadow-md">
                                     <Link
                                       href={{
-                                        pathname: "/SellerDashboard/stock/editProduct/[id]",
+                                        pathname:
+                                          "/SellerDashboard/stock/editProduct/[id]",
                                         query: { id: product.id },
                                       }}
                                       key={product.id}
@@ -171,18 +162,19 @@ export default function SellerDashboard() {
                                     >
                                       Edit
                                     </Link>
-                                    <DeleteProductButton productId={product.id} />
+                                    <DeleteProductButton
+                                      productId={product.id}
+                                    />
                                   </div>
                                 </div>
                               </td>
                             </tr>
                           </>
-                        ))
+                        );
                       })}
                     </tbody>
                   </table>
                 </div>
-
               </div>
             </div>
             <Footer />
@@ -190,5 +182,5 @@ export default function SellerDashboard() {
         </React.Fragment>
       )}
     </>
-  )
+  );
 }

@@ -35,8 +35,7 @@ export default function SellerApplication() {
           </Head>
           {playAnimation ? (
             <>
-              <Navbar />
-              <hr className="mt-1.5"></hr>
+              <Navbar /> 
               <SellerApplicationForm/>
               <PopUp isVisible={showModal} onClose={()=> setShowModal(false)}/>
               <Footer/>

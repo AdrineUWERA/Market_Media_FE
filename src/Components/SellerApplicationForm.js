@@ -127,8 +127,7 @@ export default function SellerApplicationForm() {
                             id="website_link"
                             className="bg-white border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Website link"
-                            autocomplete="off"
-                            required
+                            autocomplete="off" 
                         value={webLink}
                         onChange={(e) => setWebLink(e.target.value)}
                         />
@@ -140,8 +139,7 @@ export default function SellerApplicationForm() {
                             id="social_link"
                             className="bg-white border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Social media link"
-                            autocomplete="off"
-                            required
+                            autocomplete="off" 
                         value={socialMediaLink}
                         onChange={(e) => setSocialMediaLink(e.target.value)}
                         />

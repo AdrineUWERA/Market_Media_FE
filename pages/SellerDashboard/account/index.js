@@ -26,7 +26,6 @@ export default function account() {
           </Head>
           <>
             <Navbar />
-            <hr className="mt-1.5"></hr>
             <div className='flex flex-row justify-start'>
               <Sidebar />
               {/* {data.business.map((business) => {

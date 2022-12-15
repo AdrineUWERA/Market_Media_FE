@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const GET_BUSINESS_INFO = gql`
 query getBusinessInfo{
-    business(id:"63836fd9a0481d0d5a667d90"){
+    business(id:"638e4167c2ded250f8ef9408"){
         image
         name
         description

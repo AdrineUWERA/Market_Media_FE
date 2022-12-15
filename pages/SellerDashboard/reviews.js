@@ -10,7 +10,7 @@ import { GET_REVIEWS,GET_REVIEWS_COUNT,GET_AVERAGE_RATING } from "./../../src/Qu
 import LoadingAnimation from "./../../src/Components/UI/LoadingAni";
 import AverageReview from "./../../src/Components/Reviews/AverageReview"
 import NumberOfReviews from "./../../src/Components/Reviews/NumberOfReviews"
-
+import {FaUserCircle} from "react-icons/fa"
 
 export default function reviews() {
 
@@ -31,7 +31,6 @@ export default function reviews() {
       </Head>
       <>
         <Navbar />
-        <hr className="mt-1.5"></hr>
         <div className='flex flex-row justify-start'>
           <Sidebar />
           <div className='flex-1 mt-14 mb-14 ml-10 mr-14 relative'>
@@ -56,13 +55,14 @@ export default function reviews() {
                     {/* <div className=""> */}
                     <div className="flex items-center">
                       <div className="w-20 h-20 relative mr-8">
-                        <Image
+                        {/* <Image
                           src={review.user.image}
                           alt="Picture of the author"
                           layout="fill"
                           objectFit="cover"
                           className="rounded-full"
-                        ></Image>
+                        ></Image> */}
+                        <FaUserCircle size={55} />
                       </div>
                       <div>
                         <p className="font-bold text-[18px]">{review.user.name}</p>
