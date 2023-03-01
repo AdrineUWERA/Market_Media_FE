@@ -23,8 +23,10 @@ const ProductDetails = () => {
       {!loading && !error && (
         <div className="flex flex-col py-20">
           <div className="flex flex-row px-32">
-            <div className="border-gray-200 border-2">
-              <Image src={productDetails.image} width={500} height={300} />
+            <div className="border-gray-200 border-2 w-[40%]">
+              <div className="w-[100%] h-[100%] relative">
+              <Image layout="fill" src={productDetails.image} objectFit="cover" objectPosition="center"/>
+              </div>
             </div>
             <div className="flex flex-col pl-20 justify-center">
               <h1 className="text-5xl font-bold pb-12">

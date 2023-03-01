@@ -38,15 +38,18 @@ const AllSellers = () => {
                   >
                     <div
                       key={seller.id}
-                      className="w-full md:w-[20rem] lg:w-[15rem] p-4 rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl cursor-pointer"
+                      className="h-[19rem] w-full md:w-[20rem] lg:w-[15rem] p-4 rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl cursor-pointer"
                     >
-                      <div className="p-2 mb-5">
-                        <Image
-                          src={seller.image}
-                          alt=""
-                          width={200}
-                          height={100}
-                        ></Image>
+                        <div className="h-[95%] p-2 mb-5">
+                        <div className="w-[100%] h-[65%] relative">
+                          <Image
+                            src={seller.image}
+                            alt="seller image"
+                            layout="fill"
+                            objectFit="cover"
+                            className="object-cover object-center"
+                          ></Image>
+                        </div>
                         <h2 className="my-5 text-xl font-bold aliased max-w-[18rem] text-[#404040]">
                           {seller.name}
                         </h2>

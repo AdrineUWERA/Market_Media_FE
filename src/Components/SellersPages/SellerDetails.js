@@ -29,9 +29,11 @@ const SellerDetails = () => {
       {!loading && !error && (
         <div className="flex flex-col pt-20">
           <div className="flex flex-row px-32">
-            <div className="flex flex-col justify-between mb-7">
-              <Image src={business.image} width={500} height={300} />
-              <div className="">
+            <div className="flex flex-col justify-between mb-7 w-[40%]">
+              <div className="w-[100%] h-[100%] relative">
+                <Image layout="fill" src={business.image} objectFit="cover" objectPosition="center" />
+              </div>
+              <div className="mt-[1.5rem]">
                 <Link
                   href={{
                     pathname: "/sellers/products/[id]",
