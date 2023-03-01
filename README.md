@@ -19,6 +19,11 @@ This project is the front end of a web app called "Market media" developed to se
 2. See list of sellers with that product
 3. Order the product from seller of choice
 
+## Frameworks & other technologies used
+* Next JS
+* Apollo server
+* Tailwind CSS
+
 ## Using the project
 1. Clone the repo 
 2. Install dependencies usinf this command in the terminal ` npm install`
